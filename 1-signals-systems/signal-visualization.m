@@ -1,163 +1,46 @@
-% Task 1: Create a Sine Wave
-%Generate a sine wave in MATLAB.
-%
-%Requirements:
-%
-%Amplitude = 1
-%Frequency = 5 Hz
-%Duration = 1 second
+%% Initial Setup
+% It is best practice to start scripts by clearing old data and closing old figures
+clc; 
+clear; 
+close all; 
 
-t = 0 : 0.001 : 1; % if sampling rate is the same as frequency readings will show a straight line. sampling has to be much faster
+%% Task 1: Create a Sine Wave
+t = 0 : 0.001 : 1; % Excellent choice on the time step!
 w1 = sin(2*pi*5*t);
 
-%Create a plot with:
-%
-%Title
-%X-axis label
-%Y-axis label
-%Grid enabled
+figure; % Opens a new window so Task 2 doesn't overwrite this plot
+plot(t, w1);
+% You had the comments for these, but missed the actual commands!
+title('Task 1: 5 Hz Sine Wave');
+xlabel('Time (seconds)');
+ylabel('Amplitude');
+grid on; 
 
-plot(t, w1)
-%%
-% Task 2: Compare Different Frequencies
-%
-%Generate three sine waves:
-%
-%2 Hz
-%5 Hz
-%10 Hz
+%% Task 2: Compare Different Frequencies
+frequencies = [2, 5, 10];
+for i = 1:length(frequencies)
+    subplot(3,1,i)
+    plot(t, sin(2*pi*frequencies(i)*t))
+    title([num2str(frequencies(i)), ' Hz']);
+end
+%% Task 3: Compare Different Amplitudes
+% Using 2 Hz for all signals as you originally set up
+amplitudes = [0.5, 1.0, 2.0];
+for i = 1:length(amplitudes)
+    subplot(3,1,i)
+    plot(t, amplitudes(i) * sin(2*pi*2*t))
+    ylim([-2.5 2.5]);
+    title(['Amplitude: ', num2str(amplitudes(i))]);
+end
+%% Task 4: Add Noise
+f = 2;
+cleansignal = sin(2*pi*f*t);
+noise = 0.1 * randn(size(t));
+noisysignal = cleansignal + noise;
 
-w2 = sin(2*pi*2*t);
-w3 = sin(2*pi*10*t);
-
-%Display them using subplots.
-
-subplot(3,1,1)
-plot(t,w2)
-title("2Hz")
-
-subplot(3,1,2);
-plot(t,w1)
-title("5Hz")
-
-subplot(3,1,3);
-plot(t,w3)
-title("10Hz")
-%
-%Answer these questions in your README:
-%
-%Which signal changes fastest?
-%Which signal has the lowest frequency?
-%How can you see the difference in the plots?
-
-%%
-%Task 3: Compare Different Amplitudes
-%
-%Generate three sine waves with amplitudes:
-%
-%0.5
-%1
-%2
-%Use the same frequency for all signals.
-%
-%Display them using subplots.
-
-w4 = 0.5 *sin(2*pi*2*t);
-w5 = sin(2*pi*2*t);
-w6 = 2 *sin(2*pi*2*t);
-
-subplot(3,1,1)
-plot(t,w4)
-ylim([-2 2])
-title("Amplitude 0.5")
-
-subplot(3,1,2);
-plot(t,w5)
-ylim([-2 2])
-title("Amplitude 1")
-
-subplot(3,1,3);
-plot(t,w6)
-ylim([-2 2])
-title("Amplitude 2")
-%
-%Answer these questions in your README:
-%
-%Which signal has the largest amplitude?
-%Does changing amplitude change frequency?
-%Give one real-world example where amplitude is important.
-% Task 4: Add Noise
-%
-%Generate a clean sine wave.
-%
-%Add random noise to create a noisy signal.
-%
-%Display:
-%
-%Clean signal
-%Noisy signal
-%using subplots.
-%
-%Answer these questions in your README:
-%
-%What changed after adding noise?
-%Can you still recognize the original signal?
-%Give one real-world source of signal noise.
-%Task 5: Save Figures
-%
-%Save the following figures as PNG files:
-%
-%frequency_comparison.png
-%
-%amplitude_comparison.png
-%
-%clean_vs_noisy_signal.png
-%
-% Task 6: Use AI Responsibly
-%
-%You may use:
-%
-%ChatGPT
-%GitHub Copilot
-%Claude
-%Gemini
-%Other AI assistants
-%Ask AI for help with one MATLAB task.
-%
-%Include the following in your README:
-%
-%AI Tool Used:
-%
-% Prompt:
-%
-% What AI Suggested:
-%
-% Did the code work immediately?
-%
-% What did you modify?
-%
-% How did you verify the result?
-%
-%Remember:
-%
-%AI is allowed. Verification is mandatory.
-%
-% GitHub Submission
-%
-%Create the folder:
-%
-%Lecture01
-%
-%Upload:
-%
-%Lecture01_signal_visualization.m
-%
-%README.md
-%
-% frequency_comparison.png
-%
-%amplitude_comparison.png
-%
-%clean_vs_noisy_signal.png
-%
-% Submit to Moodle
+figure; % Opens a fourth window
+plot(t, noisysignal);
+title('Task 4: Noisy Signal');
+xlabel('Time (seconds)');
+ylabel('Amplitude');
+grid on;
