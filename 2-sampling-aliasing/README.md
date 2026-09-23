@@ -32,221 +32,221 @@ Google's Gemini
 
 - Prompt(s)
 "Clean this code up: 
-    ```matlab
-        Clean this code up: %% Initial Setup
+```matlab
 
-% It is best practice to start scripts by clearing old data and closing old figures
 
-clc;
+    % It is best practice to start scripts by clearing old data and closing old figures
 
-clear;
+    clc;
 
-close all;
+    clear;
 
-%%%Tasks
+    close all;
 
-%
+    %%%Tasks
 
-%Task 1 – Create the Original Signal (15 points)
+    %
 
-%
+    %Task 1 – Create the Original Signal (15 points)
 
-%Generate a 10 Hz sine wave with a duration of 1 second using a sufficiently small time step so that it closely represents a continuous-time signal.
+    %
 
-t = 0 :0.001 : 1;
+    %Generate a 10 Hz sine wave with a duration of 1 second using a sufficiently small time step so that it closely represents a continuous-time signal.
 
-f = 10;
+    t = 0 :0.001 : 1;
 
-a = 1;
+    f = 10;
 
-originalsignal = a * sin(2 * pi * f * t);
+    a = 1;
 
-figure;
+    originalsignal = a * sin(2 * pi * f * t);
 
-plot(t, originalsignal, 'LineWidth', 1.5);
+    figure;
 
-title('Original 10 Hz Sine Wave');
+    plot(t, originalsignal, 'LineWidth', 1.5);
 
-xlabel('Time (s)');
+    title('Original 10 Hz Sine Wave');
 
-ylabel('Amplitude');
+    xlabel('Time (s)');
 
-grid on;
+    ylabel('Amplitude');
 
-legend('Original signal');
+    grid on;
 
-saveas(gcf, 'original_signal.png');
+    legend('Original signal');
 
-%Plot the signal with appropriate:
+    saveas(gcf, 'original_signal.png');
 
-%
+    %Plot the signal with appropriate:
 
-%title,
+    %
 
-%axis labels,
+    %title,
 
-%grid,
+    %axis labels,
 
-%legend (if applicable).
+    %grid,
 
-% Save the figure as:
+    %legend (if applicable).
 
-%
+    % Save the figure as:
 
-% original_signal.png
+    %
 
-%%Task 2 – Investigate Different Sampling Frequencies (35 points)
+    % original_signal.png
 
-%
+    %%Task 2 – Investigate Different Sampling Frequencies (35 points)
 
-% Sample the same signal using the following sampling frequencies:
+    %
 
-%
+    % Sample the same signal using the following sampling frequencies:
 
-% 15 Hz
+    %
 
-samplingFrequencies = [15, 20, 25, 50, 100];
+    % 15 Hz
 
-figure;
+    samplingFrequencies = [15, 20, 25, 50, 100];
 
-for i = 1:numel(samplingFrequencies)
+    figure;
 
-samplingFrequency = samplingFrequencies(i);
+    for i = 1:numel(samplingFrequencies)
 
-sampledTime = 0 : 1/samplingFrequency : 1;
+    samplingFrequency = samplingFrequencies(i);
 
-sampledSignal = a * sin(2 * pi * f * sampledTime);
+    sampledTime = 0 : 1/samplingFrequency : 1;
 
+    sampledSignal = a * sin(2 * pi * f * sampledTime);
 
-% Creates a 3x2 grid of subplots
 
-subplot(3, 2, i);
+    % Creates a 3x2 grid of subplots
 
-% figure(i + 1)
+    subplot(3, 2, i);
 
-plot(t, originalsignal, 'LineWidth', 1.2);
+    % figure(i + 1)
 
-hold on;
+    plot(t, originalsignal, 'LineWidth', 1.2);
 
-stem(sampledTime, sampledSignal, 'filled', 'MarkerSize', 4);
+    hold on;
 
-hold off; % Good practice to turn off hold
+    stem(sampledTime, sampledSignal, 'filled', 'MarkerSize', 4);
 
+    hold off; % Good practice to turn off hold
 
-title(sprintf('%d Hz Sampling', samplingFrequency));
 
-xlabel('Time (s)');
+    title(sprintf('%d Hz Sampling', samplingFrequency));
 
-ylabel('Amplitude');
+    xlabel('Time (s)');
 
-grid on;
+    ylabel('Amplitude');
 
-legend('Original', 'Samples', 'Location', 'best'); % Optimizes legend placement
+    grid on;
 
-end
+    legend('Original', 'Samples', 'Location', 'best'); % Optimizes legend placement
 
-% 20 Hz
+    end
 
-% 25 Hz
+    % 20 Hz
 
-% 50 Hz
+    % 25 Hz
 
-% 100 Hz
+    % 50 Hz
 
-% For each sampling frequency:
+    % 100 Hz
 
-%
+    % For each sampling frequency:
 
-% plot the original continuous signal,
+    %
 
-% overlay the sampled points using markers or stems,
+    % plot the original continuous signal,
 
-% compare the sampled representation with the original signal.
+    % overlay the sampled points using markers or stems,
 
-% Create one figure with five subplots (recommended) or five separate figures.
+    % compare the sampled representation with the original signal.
 
-%
+    % Create one figure with five subplots (recommended) or five separate figures.
 
-% If using separate figures, save them as:
+    %
 
-%
+    % If using separate figures, save them as:
 
-% sampling_15Hz.png
+    %
 
-%
+    % sampling_15Hz.png
 
-% sampling_20Hz.png
+    %
 
-%
+    % sampling_20Hz.png
 
-% sampling_25Hz.png
+    %
 
-%
+    % sampling_25Hz.png
 
-% sampling_50Hz.png
+    %
 
-%
+    % sampling_50Hz.png
 
-% sampling_100Hz.png
+    %
 
-%
+    % sampling_100Hz.png
 
-% Task 3 – Nyquist Analysis (15 points)
+    %
 
-%
+    % Task 3 – Nyquist Analysis (15 points)
 
-% The original signal has a frequency of: fmax = 10 Hz
+    %
 
-fMax = f;
+    % The original signal has a frequency of: fmax = 10 Hz
 
-nyquistRate = 2 * fMax;
+    fMax = f;
 
-fprintf('Minimum Nyquist sampling frequency: %.1f Hz\n', nyquistRate);
+    nyquistRate = 2 * fMax;
 
-fprintf('Frequencies satisfying the criterion: %s Hz\n', ...
+    fprintf('Minimum Nyquist sampling frequency: %.1f Hz\n', nyquistRate);
 
-mat2str(samplingFrequencies(samplingFrequencies >= nyquistRate)));
+    fprintf('Frequencies satisfying the criterion: %s Hz\n', ...
 
-%
+    mat2str(samplingFrequencies(samplingFrequencies >= nyquistRate)));
 
-% Determine the minimum sampling frequency using the Nyquist Sampling Theorem.
+    %
 
-%
+    % Determine the minimum sampling frequency using the Nyquist Sampling Theorem.
 
-% Show your calculation.
+    %
 
-%
+    % Show your calculation.
 
-% Then answer:
+    %
 
-%
+    % Then answer:
 
-% Which sampling frequencies satisfy the Nyquist criterion?
+    %
 
-% Is sampling exactly at the Nyquist rate recommended in practice? Explain your answer.
+    % Which sampling frequencies satisfy the Nyquist criterion?
 
-% No it is not recommended for example in this figure it is impossible
+    % Is sampling exactly at the Nyquist rate recommended in practice? Explain your answer.
 
-% to distinguish signal when it is sampled at 20 Hz. This is because of
+    % No it is not recommended for example in this figure it is impossible
 
-% the phase of the sampling. It also should not be done because there
+    % to distinguish signal when it is sampled at 20 Hz. This is because of
 
-% is no margin for error with hardware.
+    % the phase of the sampling. It also should not be done because there
 
-% Task 4 – Aliasing Discussion (20 points)
+    % is no margin for error with hardware.
 
-% At which sampling frequencies does aliasing occur?
+    % Task 4 – Aliasing Discussion (20 points)
 
-% Aliasing occurs at all frequencies below the Nyquist rate
+    % At which sampling frequencies does aliasing occur?
 
-% Why does aliasing occur?
+    % Aliasing occurs at all frequencies below the Nyquist rate
 
-% Aliasing occurs because the sampling is too slow and it is unable to match the speed of the signal.
+    % Why does aliasing occur?
 
-% Which sampling frequency would you recommend for a real engineering system?
+    % Aliasing occurs because the sampling is too slow and it is unable to match the speed of the signal.
 
-% For this signal, I recommend a sampling rate in the range of 50–100 Hz depending on specific needs. Microcontrollers like the STM32 and ESP32 can handle processing requirements in this range with ease, meaning the computational cost remains low. This oversampling ensures much higher accuracy by capturing superior waveform fidelity compared to the strict Nyquist minimum. Finally, it provides greater robustness, making the system less sensitive to high-frequency noise and hardware timing errors. 
-```
+    % Which sampling frequency would you recommend for a real engineering system?
+
+    % For this signal, I recommend a sampling rate in the range of 50–100 Hz depending on specific needs. Microcontrollers like the STM32 and ESP32 can handle processing requirements in this range with ease, meaning the computational cost remains low. This oversampling ensures much higher accuracy by capturing superior waveform fidelity compared to the strict Nyquist minimum. Finally, it provides greater robustness, making the system less sensitive to high-frequency noise and hardware timing errors. 
+    ```
 - Summary of AI Response
     cleaned up code
 - What I Modified
