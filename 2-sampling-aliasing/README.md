@@ -248,8 +248,11 @@ Google's Gemini
     % For this signal, I recommend a sampling rate in the range of 50–100 Hz depending on specific needs. Microcontrollers like the STM32 and ESP32 can handle processing requirements in this range with ease, meaning the computational cost remains low. This oversampling ensures much higher accuracy by capturing superior waveform fidelity compared to the strict Nyquist minimum. Finally, it provides greater robustness, making the system less sensitive to high-frequency noise and hardware timing errors. 
 ```
 - Summary of AI Response
+
     cleaned up code
 - What I Modified
+
     removed unnecessary comments
 - How I Verified the Results
+
     I reran the code and verified nothing structurally was changed
