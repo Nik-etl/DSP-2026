@@ -1,72 +1,69 @@
-clear;
-close all;
-clc;
+clear; clc; close all;
 
-%% Original signal
+%% Part 1: A signal and its Z-transform
+x = [1 2 1];
+n = 0:length(x)-1;
 
-fs_original = 48000;       % Original sampling frequency
-signal_frequency = 7000;   % Signal frequency: 7 kHz
-duration = 2;              % Duration in seconds
-amplitude = 0.20;          % Keep the volume low
+% Delay the signal by one sample
+xDelayed = [0 x];
+nDelayed = 0:length(xDelayed)-1;
 
-t = 0:1/fs_original:duration-1/fs_original;
-
-x = amplitude * sin(2*pi*signal_frequency*t);
-
-%% Listen to the original signal
-
-disp('Original signal: 7 kHz');
-
-soundsc(x, fs_original);
-pause(duration + 1);
-
-%% Select a new sampling frequency
-
-% Change only this value
-fs_low = 6000;
-
-% The original frequency must be divisible by fs_low
-M = fs_original / fs_low;
-
-if mod(M,1) ~= 0
-    error('Choose an fs_low value that divides 48000 exactly.');
-end
-
-%% Downsample without an anti-aliasing filter
-
-x_alias = x(1:M:end);
-
-nyquist_frequency = fs_low / 2;
-
-fprintf('New sampling frequency: %.0f Hz\n', fs_low);
-fprintf('New Nyquist frequency: %.0f Hz\n', nyquist_frequency);
-
-%% Listen to the downsampled signal
-
-disp('Downsampled signal');
-
-soundsc(x_alias, fs_low);
-
-%% Compare the frequency spectra
-
-figure('Color','white');
-
+figure;
 subplot(2,1,1);
-
-periodogram(x, [], [], fs_original);
-xlim([0 10]);
-xline(7, '--r', 'Original: 7 kHz', ...
-    'LineWidth', 1.5);
-
-title('Original Signal: 7 kHz');
+stem(n, x, 'filled');
+title('Original Signal x[n]');
+xlabel('Sample n'); ylabel('Amplitude');
 grid on;
 
 subplot(2,1,2);
-
-periodogram(x_alias, [], [], fs_low);
-xlim([0 fs_low/2000]);
-
-title(['After Downsampling: f_s = ', ...
-    num2str(fs_low/1000), ' kHz']);
-
+stem(nDelayed, xDelayed, 'filled');
+title('One-Sample Delay x[n-1]');
+xlabel('Sample n'); ylabel('Amplitude');
 grid on;
+
+%% Part 2: A system with one sample delay (Task 4 & 5)
+% Coefficients of H(z) = 0.5 + 0.5*z^(-1)
+b = [0.5 0.5];
+a = 1;
+
+% Add one zero to show the final output sample
+xInput = [x 0];
+y = filter(b, a, xInput);
+nOutput = 0:length(y)-1;
+
+figure;
+subplot(2,1,1);
+stem(nOutput, xInput, 'filled');
+title('Input x[n]');
+xlabel('Sample n'); ylabel('Amplitude');
+grid on;
+
+subplot(2,1,2);
+stem(nOutput, y, 'filled');
+title('Output y[n] (b = [0.5 0.5])');
+xlabel('Sample n'); ylabel('Amplitude');
+grid on;
+
+disp('Output samples for b = [0.5 0.5]:');
+disp(y);
+
+%% Part 2: Modified system (Task 6)
+% Updated Coefficients for H(z) = 0.8 + 0.2*z^(-1)
+b_new = [0.8 0.2];
+y_new = filter(b_new, a, xInput);
+
+figure;
+subplot(2,1,1);
+stem(nOutput, xInput, 'filled');
+title('Input x[n]');
+xlabel('Sample n'); ylabel('Amplitude');
+grid on;
+
+subplot(2,1,2);
+stem(nOutput, y_new, 'filled');
+title('Output y_new[n] (b = [0.8 0.2])');
+xlabel('Sample n'); ylabel('Amplitude');
+grid on;
+
+disp('Output samples for b = [0.8 0.2]:');
+disp(y_new);

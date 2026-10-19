@@ -12,24 +12,24 @@ It allows for analyzing using simple algebra instead of more complex and time co
 
 **3. Poles and Stability:** 
 Based on your generated `zplane` figure, what is the exact location of the pole? Does this pole location indicate that the system is stable or unstable?
-*(Type your answer here)*
+The exact location of the pole is at $z = 0.5$[cite: 1]. This pole location indicates that the system is stable because it is situated inside the unit circle[cite: 1].
 
 **4. Impulse Response:** 
 When analyzing the `impz` output, does the response decay or grow over time? How does this visually confirm your stability assessment?
-*(Type your answer here)*
+The impulse response decays over time, with the output values progressively shrinking[cite: 1]. This visually confirms the stability assessment because a stable system's output will naturally fade rather than grow indefinitely[cite: 1].
 
 **5. Frequency Response:** 
 Based on your `freqz` plot, does this filter pass slow changes or rapid fluctuations more strongly?
-*(Type your answer here)*
+This filter passes slow changes strongly while actively reducing rapid fluctuations[cite: 1].
 
 **6. Filter Memory:** 
 When modifying the feedback coefficient ($\alpha$) in your MATLAB experiment, how did a larger coefficient alter the filter's memory and response speed?
-*(Type your answer here)*
+A larger feedback coefficient gives the filter more memory, which results in a slower response speed[cite: 1].
 
 ---
 
 ## AI Usage
 
-* **Tool used:** *Gemini*
-* **How I used it:** *I used it to help format my readme, *
-* **What I verified or changed:** *(e.g., I verified the theoretical pole location against my MATLAB plot before writing the final answer...)*
+- **Tool used:** *Gemini*
+- **How I used it:** I used it to help format my readme, and check my understanding of poles, stability, and frequency response.
+- **What I verified or changed:** I verified the theoretical pole location and the relationship between the feedback coefficient and response speed against my MATLAB plots before writing the final answers.
