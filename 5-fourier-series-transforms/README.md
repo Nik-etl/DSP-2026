@@ -4,15 +4,15 @@
 
 **1. Prediction (Before running MATLAB):**
 *What will happen to the waveform as you add more harmonics?*
-[Insert your prediction here]
+I predict it will grow closer to a square wave.
 
 **4. Description of changes:**
 *What changes as H increases?*
-[Insert your description here]
+The signal approxomates the shape of a square wave.
 
 **5. Observation near sharp transitions:**
 *What do you observe close to the sharp transitions of the square wave?*
-[Insert your observation here]
+There are sharp spikes rising above the square wave, this is because with a finite sum of harmonics it is impossible to create a non continuous step function.
 
 ---
 
@@ -20,17 +20,17 @@
 
 **1. Frequencies and Amplitudes Prediction:**
 *What are the two frequencies and their amplitudes?*
-[Insert your predicted frequencies and amplitudes here]
+15 Hz at 0.8 amplitude and 40 Hz at 0.4 amplitude
 
 **4. Peak Identification and Comparison:**
 *Identify the two peaks. Compare their frequencies and amplitudes with the original signal values.*
-[Insert your comparison here]
+0.8 peak at 15 Hz and 0.4 peak at  40 Hz
 
 **5. Bin-Spacing Calculation:**
 *Calculate the frequency-bin spacing using fs and the number of samples. Compare expected and measured values.*
-* **Expected bin spacing:** [Calculation/Value]
-* **Measured bin spacing:** [Value from plot]
-* **Comparison:** [Insert comparison here]
+* **Expected bin spacing:** [1]
+* **Measured bin spacing:** [1]
+* **Comparison:** [Measured and expected bin spacing are matching]
 
 ---
 
