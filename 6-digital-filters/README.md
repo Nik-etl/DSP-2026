@@ -47,7 +47,7 @@ Both filters allow 5Hz signal near perfectly, the FIR only allows about 60% ampl
 
 *![Spectrogram](images/bfigure3.png)*
 
-* **50 Hz is the yellow line. it is filtered out in the last subplot**
+* **Artificially added noise is the yellow line at 50Hz.**
 
 ### 3\. Listening Test
 
