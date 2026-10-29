@@ -4,15 +4,15 @@
 
 ### 1\. Time-Domain Comparison
 
-*!\[Time-Domain](images/figure1.png)*
+*![Time-Domain](images/figure1.png)*
 
 ### 2\. Frequency Responses
 
-*!\[Frequency Response](images/figure2.png)*
+*![Frequency Response](images/figure2.png)*
 
 ### 3\. Amplitude Spectra
 
-*!\[Amplitude Spectra](images/figure3.png)*
+*![Amplitude Spectra](images/figure3.png)*
 
 Both filters allow 5Hz signal near perfectly, the FIR only allows about 60% amplitude at 12Hz while the IIR allows almost full amplitude at 12Hz, noisy spikes at 50 and 137 are attenuated 
 
@@ -41,11 +41,11 @@ Both filters allow 5Hz signal near perfectly, the FIR only allows about 60% ampl
 
 ### 1\. Waveform Comparison
 
-*!\[Audio Waveform](images/bfigure1.png)*
+*![Audio Waveform](images/bfigure1.png)*
 
 ### 2\. Audio Spectrum / Spectrogram
 
-*!\[Spectrogram](images/bfigure3.png)*
+*![Spectrogram](images/bfigure3.png)*
 
 * **50 Hz is the yellow line. it is filtered out in the last subplot**
 
