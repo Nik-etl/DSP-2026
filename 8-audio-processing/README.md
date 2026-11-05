@@ -19,6 +19,16 @@
 5. Execute the remaining cells in sequence to load the audio, plot the waveform and spectrum, and generate the spectrogram comparisons.
 6. The final output files (figures and CSVs) will be saved in the generated `results/` archive.
 
+## Figures
+
+*![Audio Waveform](figures/option_c_inspection.png)*
+Figure 1: Waveform and Spectrum of the dog bark. The top plot shows the amplitude of the signal over time. The bottom plot shows the frequency spectrum.
+
+*![Audio Waveform](figures/option_c_spectrograms.png)*
+Figure 2: Comparison of STFT spectrograms. The top spectrogram uses a 512-sample window. The bottom spectrogram uses a 2048-sample window.
+
+Figure 2: Comparison of STFT spectrograms. The top spectrogram uses a 512-sample window, providing sharp time resolution for the bark's onset. The bottom spectrogram uses a 2048-sample window, providing detailed frequency resolution that reveals harmonic structures.
+
 ## Main Conclusion
 The analysis of the dog bark reveals a clear trade-off between time and frequency resolution based on window length. The primary bark occurs between **2.0 and 2.5 seconds**, with the highest concentration of energy lying roughly between **900 Hz and 2000 Hz**. 
 * The **512-sample window** offers superior **time resolution**, meaning sharp transient sounds (like the sudden rise of the bark) appear as vertical lines without blurring across the time axis. However, its frequency resolution is lower.
