@@ -1,43 +1,34 @@
-# DSP Audio Experiment Assignment
+# DSP Assignment - Option C: Analyse an environmental sound
 
 ## Selected Option
+**Option C** — Analyse an environmental sound
 
-**Option C — Analyse an environmental sound**
-
-## Audio Filenames
-
-*The following supplied audio file was used in this experiment:*
-
-* **\[Insert filename here, e.g., dog_bark_01.wav\]** *(Note: Choose from the supplied dog, rain, fire, or clock-tick recordings).*
-  
-*(Note: The complete dataset is not included in this repository. Please refer to the supplied assignment files.)*
+## Audio Filename
+- Dog recording (loaded dynamically from the supplied `manifest.csv` dataset)
 
 ## Settings Used
-
-* **Audio Sample Rate:** 16 kHz
-* **Hop Size:** 160 samples
-* **Window Lengths Compared:** 512 samples and 2048 samples
-* **Other relevant parameters:** \[List any other specific settings, e.g., FFT size, window type like Hann\]
+- **Sample Rate:** 16,000 Hz (16 kHz)
+- **Hop Length:** 160 samples
+- **Spectrogram Window Lengths (N_FFT):** 512 samples and 2048 samples
 
 ## Instructions for Running the Notebook
-
-1. Clone this repository.
-2. Ensure you have the required dependencies installed: `[List dependencies, e.g., numpy, librosa, matplotlib]`.
-3. Place the original supplied audio file in the `[Insert folder name, e.g., data/]` directory.
-4. Open and run `analysis.ipynb` sequentially from top to bottom.
-5. The generated waveform, frequency spectrum, and comparative spectrograms will be saved in the `results/` folder.
+1. Open `analysis.ipynb` in Google Colab or your preferred Jupyter environment.
+2. Run the first setup cell to install all required dependencies (PyTorch, librosa, etc.). 
+3. **Important:** Restart the runtime when prompted by the output of the first cell.
+4. Run the second cell and upload the `Audio_Course_Package.zip` file when prompted to load the dataset.
+5. Execute the remaining cells in sequence to load the audio, plot the waveform and spectrum, and generate the spectrogram comparisons.
+6. The final output files (figures and CSVs) will be saved in the generated `results/` archive.
 
 ## Main Conclusion
+The analysis of the dog bark reveals a clear trade-off between time and frequency resolution based on window length. The primary bark occurs between **2.0 and 2.5 seconds**, with the highest concentration of energy lying roughly between **900 Hz and 2000 Hz**. 
+* The **512-sample window** offers superior **time resolution**, meaning sharp transient sounds (like the sudden rise of the bark) appear as vertical lines without blurring across the time axis. However, its frequency resolution is lower.
+* The **2048-sample window** provides better **frequency resolution**, revealing clearer horizontal frequency bands and harmonics. The trade-off is that it smears these transient sounds across time, resulting in a loss of sharp timing precision.
 
-**\[Summarize your findings in 2-3 sentences based on your analysis.\]**
-*Example: The comparison demonstrated the trade-off between time and frequency resolution. The 512-sample window provided better time resolution, clearly showing the sharp transients of the \[e.g., dog bark\] at \[insert time interval\], while the 2048-sample window provided better frequency resolution, highlighting the harmonic structure in the \[insert frequency region\] range.*
+## Limitation
+This analysis investigates only a single recording. The temporal patterns, frequency concentrations, and harmonic structures observed here are specific to this particular dog and its acoustic environment, and may not generalize to other dog barks.
 
-## Limitations
+## AI Usage
 
-**\[State one limitation of your analysis as required by the brief.\]**
-*Example: One limitation of this analysis is that it relies on a fixed hop size of 160 samples, which might not be optimally tuned for both window sizes, potentially affecting the smoothness of the resulting spectrograms...*
-
-## AI Tools Usage
-
-**\[Briefly state how you used AI assistance for this assignment.\]**
-*Example: I used Gemini to help draft the README file and to assist with the matplotlib syntax for plotting the side-by-side spectrograms. All code was run and verified by me.*
+* **Tool used: Claude (Anthropic)**
+* **How I used it: I used it to draft the python cells, debug library issues, as well as format and provide a readme template.**
+* **What I verified or changed: I verified the figures and logic matched similar results in the class example**
