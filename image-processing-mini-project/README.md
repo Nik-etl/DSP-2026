@@ -34,6 +34,6 @@ At first I started with just simple gray scale canny edge detection, this did no
 
 ## Enhancing original image
 
-!Outline of thee Great tit[Full Pipeline Montage](images/outline.png)
+![Full Pipeline Montage](images/outline.png)
 
-!Sharpening and contrast of the great tit[Full Pipeline Montage](images/contrast-sharpen.png)
+![Full Pipeline Montage](images/contrast-sharpen.png)
