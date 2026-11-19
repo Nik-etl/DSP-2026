@@ -127,7 +127,8 @@ montage({I_cropped, I_filt, I_enh, edges_clean, I_lp}, 'Size', [1 5]);
 title('Cropped | Denoised | Enhanced | Cleaned Edges | LP result');
 
 %% 7) Report
-% Problem: the bird can be hard to see behind branches
+% Problem: The bird (a Great Tit) can be hard to see behind branches and pine needles. The goal is to isolate and detect the bird's outline and body.
 % - Describe your processing pipeline.
+The original image was taken through binoculars and had circular outline with the outside containing nothing but black pixels, This would skew the histogram vastly so I had to crop the image to focus on the important signals. the image then goes through a simple 2d 3x3 median filter to remove any jpeg compression and camera sensor noise. 
 % - Explain how each stage relates to DSP operations.
 % - Discuss improvements or limitations.
