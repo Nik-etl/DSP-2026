@@ -6,7 +6,7 @@
 % - Emphasize mapping: quantization->bit-depth; dynamic range->contrast; sampling->resize.
 % - Gamma is nonlinear; contrast stretching is linear remapping.
 % -------------------------------------------------------------------------
-
+% HOW TO SUBMIT: include screenshots and short explanations for each section in the GitHub. Submit only the GitHub URL.
 close all; clear; clc;
 %% 0) Load and inspect an image
 if exist('peppers.png','file')
@@ -23,7 +23,7 @@ else
 end
 figure; imshow(I); title('Grayscale');
 % Basic info
-fprintf('Class: %s | Range: [%g, %g] | Size: %d x %d\n', class(I), double(min(I(:)), double(max(I(:)), size(I,1), size(I,2))))
+fprintf('Class: %s | Range: [%g, %g] | Size: %d x %d\n', class(I), double(min(I(:))), double(max(I(:))), size(I,1), size(I,2));
 %% 1) Quantization and dynamic range
 I8 = I; % 8-bit (0..255)
 I6 = uint8(floor(double(I)/4)*4); % ~6 bits (step 4)
@@ -44,14 +44,24 @@ I_gamma_high = imadjust(I,[],[],1.6); % gamma > 1 darkens
 figure; montage({I,I_gamma_low,I_gamma_high},'Size',[1 3]);
 title('Gamma: original | gamma=0.6 | gamma=1.6');
 %% 4) Sampling and aliasing (downsample then upsample)
-scale = 0.1; % 10% of size
+scale = 0.1; % 10% of size sampling 
 I_small = imresize(I, scale, 'nearest'); % naive sampling
 I_back = imresize(I_small, size(I), 'nearest');
 figure; montage({I, I_small, I_back}, 'Size', [1 3]);
 title('Original | Aggressively downsampled | Upscaled back (aliasing artifacts)');
 
+%% 6) Short reflections (add to your report)
 % 1) Relate bit-depth to visible banding/posterization you observed.
-
+%  when the bit depth decreases the pixels are quantized into too small of
+%  values meaning they can not represent gradual change anymore and have to take bigger steps resulting in banding
 % 2) How does contrast stretching change the histogram and visibility of details?
-
-% 3) Explain why aggressive downsampling causes aliasing.
+%  It basically normalizes the intensity of pixel values, this makes subtle
+%  changes in pixel intensity much more noticeable and spreads the histogram
+%  values out over the chart
+% 3) Explain why aggressive downsampling causes aliasing (reference Nyquist).
+% because in 2d spatial domain sharp edges and textures are high frequency
+% components, according to Nyquist-Shannon theorem, we must sample at a
+% rate greater than 2 times the signals max frequency component in order to
+% be able to recreate the original signal. If we aggresively downsample
+% like for every 10 pixels, we can not accurately recreate the high
+% frequency components resulting in aliasing. 
