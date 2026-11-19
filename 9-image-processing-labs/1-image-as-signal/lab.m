@@ -49,9 +49,9 @@ I_small = imresize(I, scale, 'nearest'); % naive sampling
 I_back = imresize(I_small, size(I), 'nearest');
 figure; montage({I, I_small, I_back}, 'Size', [1 3]);
 title('Original | Aggressively downsampled | Upscaled back (aliasing artifacts)');
-%% 6) Short reflections (add to your report)
+
 % 1) Relate bit-depth to visible banding/posterization you observed.
 
 % 2) How does contrast stretching change the histogram and visibility of details?
 
-% 3) Explain why aggressive downsampling causes aliasing (reference Nyquist).
+% 3) Explain why aggressive downsampling causes aliasing.
