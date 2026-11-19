@@ -66,9 +66,9 @@ I_enh = B_enh;
  title('Combined RGB Closed & Cleaned Outline');
 
  % --- Method B: Region-based (Multi-Level Otsu Segmentation) ---
- thresh = multithresh(G_enh, 2);       % Finds 2 Otsu thresholds: [dark_cutoff, bright_cutoff]
- dark_parts   = G_enh < thresh(1);     % Captures bird's black cap & bib
- bright_parts = G_enh > thresh(2);     % Captures bird's white cheek & bright chest
+ thresh = multithresh(B_enh, 2);       % Finds 2 Otsu thresholds: [dark_cutoff, bright_cutoff]
+ dark_parts   = R_enh < thresh(1);     % Captures bird's black cap & bib R captures head better
+ bright_parts = B_enh > thresh(2);     % Captures bird's white cheek & bright chest B 
 
  bird_mask = imclose(dark_parts | bright_parts, strel('disk', 6)); % Connects dark head & bright chest
  bird_mask = bwareaopen(bird_mask, 850);                           % Removes small stray blobs
@@ -81,7 +81,7 @@ I_enh = B_enh;
  figure;
  montage({edges_clean, bright_parts}, 'Size', [1 2]);
  title('Canny edge detection | Otsu Bright |');
-edges_clean = edges_clean | bright_parts;
+edges_clean = edges_clean | bright_parts; %| dark_parts;
  figure;
  imshow(edges_clean, 'InitialMagnification', 100);
  title('combination');
