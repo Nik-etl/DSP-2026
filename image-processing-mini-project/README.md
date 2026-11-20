@@ -29,11 +29,16 @@ At first I started with just simple gray scale canny edge detection, this did no
 
 ## 4. Evaluation & Improvements
 - **Strengths:** Fusing R, G, and B edges *before* morphological cleanup preserved partial contours broken in single channels, while combining Canny edges with Otsu bright thresholding filled in the bird's body cleanly.
-- **Limitations:** Bright specular highlights on foreground pine needles still pass intensity/gradient thresholds, and the ideal circular FFT filter introduces mild Gibbs ringing.
-- **Next Steps:** Segment the yellow chest in **CIE Lab** color space, use `imclearborder` to isolate the dark head without corner shadows, and replace the ideal FFT mask with a smooth Gaussian filter.
+- **Limitations:** Bright highlights on foreground pine needles still pass intensity thresholds, and the ideal circular FFT filter introduces mild Gibbs ringing. Also, with proper tuning, handling each R, G, and B channels' feature extracting could yield better results, but it was out of scope for this project.
 
 ## Enhancing original image
 
 ![Full Pipeline Montage](images/outline.png)
 
 ![Full Pipeline Montage](images/contrast-sharpen.png)
+
+## AI Usage
+
+* **Tool used: Google Gemini**
+* **How I used it: Used for explaining different matlab tools available, refining the script, and drafting a readme template**
+* **What I verified or changed: I designed the pipeline and tuned the parameters**
